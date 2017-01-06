@@ -23,7 +23,7 @@ Silly script to let you take unicode input and transform it, e.g.
     $perl6 mangle.p6 --hack=random 'Happy Birthday!'
     Ⓗ⒜ⓟ𝐩𝐲 𐐒⒤𝐫⒯⒣pɐ⒴¡
 
-## Accents
+## Combining Characters
 
 Where possible, preserve input combining marks:
 
