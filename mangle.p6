@@ -40,6 +40,14 @@ BEGIN %hacks = (
         use MONKEY-SEE-NO-EVAL;
         try EVAL '"\c[PARENTHESIZED ' ~ $char.uniname ~ ']"';
     },
+    'bold' => -> $char {
+        use MONKEY-SEE-NO-EVAL;
+        my $name = $char.uniname;
+        $name ~~ s/ 'LATIN ' //;
+        $name ~~ s/ 'LETTER ' //;
+        $name = "MATHEMATICAL BOLD $name";
+        try EVAL '"\c[' ~ $name ~ ']"';
+    },
     # Original table courtesy
     # http://www.fileformat.info/convert/text/upside-down-map.htm
     'invert' => %(
