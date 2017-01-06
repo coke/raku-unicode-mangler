@@ -8,12 +8,10 @@ sub MAIN(Str $input, :$hack = 'circle') {
         die "invalid hack, must be one of: " ~ %hacks.keys;
     }
 
-    my $result = "";
+    my $result = $input.comb.map({
+        one-char($hack, $_)
+    }).join;
     
-    for $input.comb -> $char {
-        $result ~= one-char($hack, $char);
-    }
-
     if %posts{$hack}:exists {
         $result = %posts{$hack}($result);
     };
