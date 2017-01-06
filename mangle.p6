@@ -4,9 +4,8 @@ my (%hacks, %posts);
 
 sub MAIN(Str $input, :$hack = 'circle') {
 
-    if !(%hacks{$hack}:exists) {
-        die "invalid hack, must be one of: " ~ %hacks.keys;
-    }
+    die "invalid hack, must be one of: " ~ %hacks.keys
+        unless %hacks{$hack}:exists;
 
     my $result = $input.comb.map({
         one-char($hack, $_)
