@@ -11,18 +11,7 @@ sub MAIN(Str $input, :$hack = 'circle') {
     my $result = "";
     
     for $input.comb -> $char {
-        my $mod = %hacks{$hack};
-        my $new-char;
-        given $mod {
-            when Callable {
-                $new-char = $mod($char);
-            }
-            when Associative {
-                $new-char = $mod{$char};
-            }
-        }
-        $new-char //= $char;
-        $result ~= $new-char;
+        $result ~= one-char($hack, $char);
     }
 
     if %posts{$hack}:exists {
@@ -31,7 +20,24 @@ sub MAIN(Str $input, :$hack = 'circle') {
     say $result;
 }
 
+sub one-char($hack, $char) {
+    my $mod = %hacks{$hack};
+    my $new-char;
+    given $mod {
+        when Callable {
+            $new-char = $mod($char);
+        }
+        when Associative {
+            $new-char = $mod{$char};
+        }
+    }
+    $new-char //= $char;
+}
+
 BEGIN %hacks = (
+    'random' => -> $char {
+        one-char(%hacks.keys.grep({$_ ne "random"}).pick(1), $char);
+    },
     'circle' => -> $char {
         use MONKEY-SEE-NO-EVAL;
         try EVAL '"\c[CIRCLED ' ~ $char.uniname ~ ']"';

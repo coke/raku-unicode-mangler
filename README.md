@@ -19,3 +19,6 @@ Silly script to let you take unicode input and transform it, e.g.
 
     $ perl6 mangle.p6 --hack=outline 'Butterflies'
     𝔹𝕦𝕥𝕥𝕖𝕣𝕗𝕝𝕚𝕖𝕤
+
+    $perl6 mangle.p6 --hack=random 'Happy Birthday!'
+    Ⓗ⒜ⓟ𝐩𝐲 𐐒⒤𝐫⒯⒣pɐ⒴¡
