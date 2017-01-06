@@ -35,7 +35,11 @@ BEGIN %hacks = (
     'circle' => -> $char {
         use MONKEY-SEE-NO-EVAL;
         try EVAL '"\c[CIRCLED ' ~ $char.uniname ~ ']"';
-    }
+    },
+    'paren' => -> $char {
+        use MONKEY-SEE-NO-EVAL;
+        try EVAL '"\c[PARENTHESIZED ' ~ $char.uniname ~ ']"';
+    },
     # Original table courtesy
     # http://www.fileformat.info/convert/text/upside-down-map.htm
     'invert' => %(
