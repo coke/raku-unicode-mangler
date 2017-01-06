@@ -20,15 +20,18 @@ sub MAIN(Str $input, :$hack = 'circle') {
 sub one-char($hack, $char) {
     my $mod = %hacks{$hack};
     my $new-char;
+
+    my $try-char = $char.samemark('a');
     given $mod {
         when Callable {
-            $new-char = $mod($char);
+            $new-char = $mod($try-char);
         }
         when Associative {
-            $new-char = $mod{$char};
+            $new-char = $mod{$try-char};
         }
     }
     $new-char //= $char;
+    $new-char.samemark($char);
 }
 
 BEGIN %hacks = (
