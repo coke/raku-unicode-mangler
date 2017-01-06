@@ -48,6 +48,14 @@ BEGIN %hacks = (
         $name = "MATHEMATICAL BOLD $name";
         try EVAL '"\c[' ~ $name ~ ']"';
     },
+    'outline' => -> $char {
+        use MONKEY-SEE-NO-EVAL;
+        my $name = $char.uniname;
+        $name ~~ s/ 'LATIN ' //;
+        $name ~~ s/ 'LETTER ' //;
+        $name = "MATHEMATICAL DOUBLE-STRUCK $name";
+        try EVAL '"\c[' ~ $name ~ ']"';
+    },
     'combo' => -> $char {
         constant @combinors = (^1000).grep({
             uniprop($_, 'Canonical_Combining_Class') ne "0"
