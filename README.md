@@ -13,3 +13,6 @@ Silly script to let you take unicode input and transform it, e.g.
    
     $ perl6 mangle.p6 --hack=paren 'lisplike'
     ⒧⒤⒮⒫⒧⒤⒦⒠
+
+    $ perl6 mangle.p6 --hack=combo 'combo breaker'
+    c̩͘o̍ͧmͮ͠b̄͋o̸̫ ̣͚b͠ͅř̗ẻ͔aͪ͢k̥̀e̒͋r͎̦

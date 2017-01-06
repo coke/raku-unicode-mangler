@@ -48,6 +48,12 @@ BEGIN %hacks = (
         $name = "MATHEMATICAL BOLD $name";
         try EVAL '"\c[' ~ $name ~ ']"';
     },
+    'combo' => -> $char {
+        constant @combinors = (^1000).grep({
+            uniprop($_, 'Canonical_Combining_Class') ne "0"
+        }).map({.chr});
+        $char ~ @combinors.pick(2).join
+    },
     # Original table courtesy
     # http://www.fileformat.info/convert/text/upside-down-map.htm
     'invert' => %(
