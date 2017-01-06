@@ -53,8 +53,9 @@ BEGIN %hacks = (
         my $name = $char.uniname;
         $name ~~ s/ 'LATIN ' //;
         $name ~~ s/ 'LETTER ' //;
-        $name = "MATHEMATICAL DOUBLE-STRUCK $name";
-        try EVAL '"\c[' ~ $name ~ ']"';
+        $name = "DOUBLE-STRUCK $name";
+        my $try = try EVAL '"\c[' ~ $name ~ ']"';
+        $try //= try EVAL '"\c[MATHEMATICAL ' ~ $name ~ ']"'
     },
     'combo' => -> $char {
         constant @combinors = (^1000).grep({
