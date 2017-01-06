@@ -1,12 +1,6 @@
 #!/usr/bin/env perl6
 
-use MONKEY-SEE-NO-EVAL;
-
-my %hacks = (
-    circle => "CIRCLED",
-    super  => "SUPERSCRIPT" 
-
-);
+my %hacks;
 
 sub MAIN(Str $input, :$hack = 'circle') {
 
@@ -18,10 +12,20 @@ sub MAIN(Str $input, :$hack = 'circle') {
     
     for $input.comb -> $char {
         my $mod = %hacks{$hack};
-        my $new-char = try EVAL '"\c[' ~ $mod ~ ' ' ~ $char.uniname ~ ']"';
+        my $new-char;
+        if $mod ~~ Callable {
+            $new-char = $mod($char);
+        }
         $new-char //= $char;
         $result ~= $new-char;
     }
 
     say $result;
 }
+
+BEGIN %hacks = (
+    'circle' => -> $char {
+        use MONKEY-SEE-NO-EVAL;
+        try EVAL '"\c[CIRCLED ' ~ $char.uniname ~ ']"';
+    }
+)
