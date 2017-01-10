@@ -4,7 +4,14 @@ use lib 't';
 use runner;
 
 use Test;
-plan 2;
+plan 4;
 
-mangled 'invert', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'Z⅄XWᴧ∩⊥SᴚΟԀOᴎW⅂⋊ſIH⅁ℲƎ◖Ↄ𐐒∀', 'UPPERCASE';
-mangled 'invert', 'abcdefghijklmnopqrstuvwxyz', 'zʎxʍʌuʇsɹqdouɯʃʞɾıɥƃɟǝpɔqɐ', 'lowercase';
+# original
+
+mangled 'invert', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'Z⅄XMᴧ∩⊥SᴚΌԀOᴎW⅂⋊ſIH⅁ℲƎ◖Ↄ𐐒∀', 'UPPERCASE';
+mangled 'invert', 'abcdefghijklmnopqrstuvwxyz', 'zʎxʍʌnʇsɹbdouɯʃʞɾıɥƃɟǝpɔqɐ', 'lowercase';
+
+# reversed
+
+mangled 'invert', 'Z⅄XMᴧ∩⊥SᴚΌԀOᴎW⅂⋊ſIH⅁ℲƎ◖Ↄ𐐒∀', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'UPPERCASE roundtrip';
+mangled 'invert', 'zʎxʍʌnʇsɹbdouɯʃʞɾıɥƃɟǝpɔqɐ', 'abcdefghijklmnopqrstuvwxyz', 'lowercase roundtrip';
