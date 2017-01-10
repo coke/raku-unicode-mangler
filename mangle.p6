@@ -30,12 +30,27 @@ sub one-char($hack, $char) {
             $new-char = $mod{$try-char};
         }
     }
+
+    # Missed? try with original marks.
+    if !$new-char.DEFINITE {
+        given $mod {
+            when Callable {
+                $new-char = $mod($char);
+            }
+            when Associative {
+                $new-char = $mod{$char};
+            }
+        }
+    }
+
+    # Didn't work? pass through original char
     $new-char //= $char;
 
     # Now add in the marks from the original character.
-    my @combinors = $char.NFD;
-    for @combinors[1..*] -> $mark {
-        $new-char ~= $mark;
+    my @combinors = $char.NFD.list;
+    @combinors.shift;
+    for @combinors -> $mark {
+        $new-char ~= chr($mark);
     }
 
     $new-char;
