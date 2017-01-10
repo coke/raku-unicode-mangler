@@ -47,10 +47,15 @@ sub one-char($hack, $char) {
     $new-char //= $char;
 
     # Now add in the marks from the original character.
-    my @combinors = $char.NFD.list;
-    @combinors.shift;
-    for @combinors -> $mark {
-        $new-char ~= chr($mark);
+    # But, cheat; don't do this for the one character
+    # we know that starts out with a mark but transforms
+    # into something without
+    if $char ne "Ό" {
+        my @combinors = $char.NFD.list;
+        @combinors.shift;
+        for @combinors -> $mark {
+            $new-char ~= chr($mark);
+        }
     }
 
     $new-char;
