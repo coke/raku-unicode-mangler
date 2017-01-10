@@ -31,7 +31,14 @@ sub one-char($hack, $char) {
         }
     }
     $new-char //= $char;
-    $new-char.samemark($char);
+
+    # Now add in the marks from the original character.
+    my @combinors = $char.NFD;
+    for @combinors[1..*] -> $mark {
+        $new-char ~= $mark;
+    }
+
+    $new-char;
 }
 
 BEGIN %hacks = (
