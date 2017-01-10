@@ -1,9 +1,10 @@
 #!/usr/bin/env perl6
 
+use lib 't';
+use runner;
+
 use Test;
 plan 2;
 
-is run($*EXECUTABLE-NAME, 'mangle.p6', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', :out).out.slurp-rest.chomp,
-    'ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ', 'UPPERCASE';
-is run($*EXECUTABLE-NAME, 'mangle.p6', 'abcdefghijklmnopqrstuvwxyz', :out).out.slurp-rest.chomp,
-    'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ', 'lowercase';
+mangled 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ', 'UPPERCASE';
+mangled 'abcdefghijklmnopqrstuvwxyz', 'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ', 'lowercase';
