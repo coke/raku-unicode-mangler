@@ -94,7 +94,14 @@ BEGIN %hacks = (
         constant @combinors = (^1000).grep({
             uniprop($_, 'Canonical_Combining_Class') ne "0"
         }).map({.chr});
-        $char ~ @combinors.pick(2).join
+        sub try-some(Int $count) {
+            $char ~ @combinors.pick(2).join;
+        }
+        my $suggest = try-some(2);
+        while $suggest.uninames.grep(/'<reserved>'/) {
+            $suggest = try-some(2);
+        }
+        $suggest;
     },
     # Original table courtesy
     # http://www.fileformat.info/convert/text/upside-down-map.htm
