@@ -66,29 +66,25 @@ BEGIN %hacks = (
         one-char(%hacks.keys.grep({$_ ne "random"}).pick(1), $char);
     },
     'circle' => -> $char {
-        use MONKEY-SEE-NO-EVAL;
-        try EVAL '"\c[CIRCLED ' ~ $char.uniname ~ ']"';
+        try ('CIRCLED ' ~ $char.uniname).parse-names;
     },
     'paren' => -> $char {
-        use MONKEY-SEE-NO-EVAL;
-        try EVAL '"\c[PARENTHESIZED ' ~ $char.uniname ~ ']"';
+        try ('PARENTHESIZED ' ~ $char.uniname).parse-names;
     },
     'bold' => -> $char {
-        use MONKEY-SEE-NO-EVAL;
         my $name = $char.uniname;
         $name ~~ s/ 'LATIN ' //;
         $name ~~ s/ 'LETTER ' //;
         $name = "MATHEMATICAL BOLD $name";
-        try EVAL '"\c[' ~ $name ~ ']"';
+        try $name.parse-names;
     },
     'outline' => -> $char {
-        use MONKEY-SEE-NO-EVAL;
         my $name = $char.uniname;
         $name ~~ s/ 'LATIN ' //;
         $name ~~ s/ 'LETTER ' //;
         $name = "DOUBLE-STRUCK $name";
-        my $try = try EVAL '"\c[' ~ $name ~ ']"';
-        $try //= try EVAL '"\c[MATHEMATICAL ' ~ $name ~ ']"'
+        my $try = try $name.parse-names;
+        $try //= try ('MATHEMATICAL ' ~ $name).parse-names;
     },
     'combo' => -> $char {
         constant @combinors = (^1000).grep({
