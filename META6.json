@@ -15,5 +15,5 @@
   "source-url" : "https://github.com/coke/p6-unicode-mangler.git",
   "tags" : [ ],
   "test-depends" : [ ],
-  "version" : "1.0.0"
+  "version" : "1.0.1"
 }
