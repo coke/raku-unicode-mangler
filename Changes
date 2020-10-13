@@ -2,6 +2,10 @@ Revision history for App-Unicode-Mangle
 
 {{$NEXT}}
 
+1.0.2
+    - Rename installed script
+    - Remove unifind, duplicates 'uni' from App::Uni
+
 1.0.1  2018-06-22T16:21:37-06:00
     - Remove .race in unifind for now
 

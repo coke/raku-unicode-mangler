@@ -15,5 +15,5 @@
   "source-url" : "https://github.com/coke/raku-unicode-mangler.git",
   "tags" : [ ],
   "test-depends" : [ ],
-  "version" : "1.0.1"
+  "version" : "1.0.2"
 }
