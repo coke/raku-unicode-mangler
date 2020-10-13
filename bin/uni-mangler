@@ -2,6 +2,6 @@
 
 use App::Unicode::Mangle;
 
-sub MAIN(Str $input, :$hack = 'circle') {
-    say mangle($input, :$hack);
+sub MAIN(*@input, :$hack = 'circle') {
+    say mangle(@input.join(' '), :$hack);
 }
