@@ -9,7 +9,7 @@ sub USAGE() {
         {$*PROGRAM-NAME} --<transformation> <input> <input> ...
 
         Transformations: --circle, --paren, --bold, --outline,
-            --combo, --invert, --square, --nsquare, --italic
+            --combo, --invert, --square, --nsquare, --italic, --random
     EOH
 }
 
@@ -47,4 +47,8 @@ multi sub MAIN(*@input, :$nsquare!) {
 
 multi sub MAIN(*@input, :$italic!) {
     say mangle(@input.join(' '), :hack<italic>);
+}
+
+multi sub MAIN(*@input, :$random!) {
+    say mangle(@input.join(' '), :hack<random>);
 }

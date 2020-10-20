@@ -155,8 +155,8 @@ BEGIN %hacks = (
 sub spacer($arg) { $arg.comb.join(' ') }
 
 BEGIN %posts = (
-    'invert' =>  &flip,
-    'square' =>  &spacer,
-    'nsquare' => &spacer
+    'invert'  => &flip,
+    'square'  => &spacer,
+    'nsquare' => &spacer,
+    'random'  => &spacer
 );
-
