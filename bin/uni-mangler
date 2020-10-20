@@ -6,7 +6,7 @@ use App::Unicode::Mangle;
 sub USAGE() {
     print Q:c:to/EOH/;
     Usage:
-        {$*PROGRAM-NAME} --<transformation> <input> <input> ...
+        {$*PROGRAM-NAME.IO.basename} --<transformation> <input> <input> ...
 
         Transformations: --circle, --paren, --bold, --outline,
             --combo, --invert, --square, --nsquare, --italic, --random
