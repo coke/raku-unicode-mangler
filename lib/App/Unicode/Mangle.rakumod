@@ -114,6 +114,13 @@ BEGIN %hacks = (
         }
         try $name.parse-names;
     },
+    'italic' => -> $char {
+        my $name = $char.uniname;
+        $name = 'MATHEMATICAL SANS-SERIF ITALIC ' ~ $name;
+        $name ~~ s/ 'LATIN ' //;
+        $name ~~ s/ 'LETTER ' //;
+        try $name.parse-names;
+    },
     # Original table courtesy
     # http://www.fileformat.info/convert/text/upside-down-map.htm
 
