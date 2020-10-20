@@ -9,7 +9,7 @@ sub mangle(Str $input, :$hack = 'circle') is export {
     my $result = $input.comb.map({
         one-char($hack, $_);
     }).join;
-    
+
     if %posts{$hack}:exists {
         $result = %posts{$hack}($result);
     };
@@ -99,6 +99,21 @@ BEGIN %hacks = (
         }
         $suggest;
     },
+    'square' => -> $char {
+        my $name = $char.uniname;
+        $name = 'SQUARED ' ~ $name;
+        $name ~~ s/SMALL/CAPITAL/;
+        try $name.parse-names;
+    },
+    'nsquare' => -> $char {
+        my $name = $char.uniname;
+        $name = 'NEGATIVE SQUARED ' ~ $name;
+        $name ~~ s/SMALL/CAPITAL/;
+        if $name eq 'NEGATIVE SQUARED LATIN CAPITAL LETTER X' {
+            $name = 'NEGATIVE SQUARED CROSS MARK';
+        }
+        try $name.parse-names;
+    },
     # Original table courtesy
     # http://www.fileformat.info/convert/text/upside-down-map.htm
 
@@ -130,7 +145,11 @@ BEGIN %hacks = (
     }
 );
 
+sub spacer($arg) { $arg.comb.join(' ') }
+
 BEGIN %posts = (
-    'invert' => &flip
+    'invert' =>  &flip,
+    'square' =>  &spacer,
+    'nsquare' => &spacer
 );
 
