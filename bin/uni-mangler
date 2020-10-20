@@ -2,6 +2,36 @@
 
 use App::Unicode::Mangle;
 
-sub MAIN(*@input, :$hack = 'circle') {
-    say mangle(@input.join(' '), :$hack);
+
+sub USAGE() {
+    print Q:c:to/EOH/;
+    Usage:
+        {$*PROGRAM-NAME} --<transformation> <input> <input> ...
+
+        Transformations: --circle, --paren, --bold, --outline, --combo, --invert
+    EOH
+}
+
+multi sub MAIN(*@input, :$circle!) {
+    say mangle(@input.join(' '), :hack<circle>);
+}
+
+multi sub MAIN(*@input, :$paren!) {
+    say mangle(@input.join(' '), :hack<paren>);
+}
+
+multi sub MAIN(*@input, :$bold!) {
+    say mangle(@input.join(' '), :hack<bold>);
+}
+
+multi sub MAIN(*@input, :$outline!) {
+    say mangle(@input.join(' '), :hack<outline>);
+}
+
+multi sub MAIN(*@input, :$combo!) {
+    say mangle(@input.join(' '), :hack<combo>);
+}
+
+multi sub MAIN(*@input, :$invert!) {
+    say mangle(@input.join(' '), :hack<invert>);
 }

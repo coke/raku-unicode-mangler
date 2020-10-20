@@ -3,7 +3,7 @@ unit class App::Unicode::Mangle:ver<1.0.1>;
 my (%hacks, %posts);
 
 sub mangle(Str $input, :$hack = 'circle') is export {
-    die "invalid hack, must be one of: " ~ %hacks.keys.sort
+    die "invalid option, must be one of: " ~ %hacks.keys.sort
         unless %hacks{$hack}:exists;
 
     my $result = $input.comb.map({
