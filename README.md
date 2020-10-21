@@ -3,8 +3,8 @@
 Silly script to let you take unicode input and transform it.
 Some samples:
 
-    $ uni-mangler 'Perl 6' #defaults to circle
-    Ⓟⓔⓡⓛ ⑥
+    $ uni-mangler --circle '#rakulang'
+    #ⓡⓐⓚⓤⓛⓐⓝⓖ
 
     $ uni-mangler --invert 'Hello, github!'
     ¡quɥʇıƃ ,oʃʃǝH
@@ -34,5 +34,5 @@ Some samples:
 
 Where possible, preserve input combining marks:
 
-    $ uni-mangler --outline 'përl'
-    𝕡𝕖̈𝕣𝕝
+    $ uni-mangler --outline rákü
+    𝕣𝕒́𝕜𝕦̈
