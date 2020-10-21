@@ -93,9 +93,9 @@ BEGIN %hacks = (
         $try //= try ('MATHEMATICAL ' ~ $name).parse-names;
     },
     'combo' => -> $char {
-        my $suggest = try-some($char, 2);
+        my $suggest = try-some($char, 10);
         while $suggest.uninames.grep(/'<reserved>'/) {
-            $suggest = try-some($char, 2);
+            $suggest = try-some($char, 10);
         }
         $suggest;
     },
