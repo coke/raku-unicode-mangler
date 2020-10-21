@@ -4,7 +4,7 @@ use lib 't';
 use runner;
 
 use Test;
-plan 4;
+plan 6;
 
 # original
 
@@ -15,3 +15,8 @@ mangled 'invert', 'abcdefghijklmnopqrstuvwxyz', 'zʎxʍʌnʇsɹbdouɯʃʞɾıɥ�
 
 mangled 'invert', 'Z⅄XMᴧ∩⊥SᴚΌԀOᴎW⅂⋊ſIH⅁ℲƎ◖Ↄ𐐒∀', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'UPPERCASE roundtrip';
 mangled 'invert', 'zʎxʍʌnʇsɹbdouɯʃʞɾıɥƃɟǝpɔqɐ', 'abcdefghijklmnopqrstuvwxyz', 'lowercase roundtrip';
+
+
+# non-alpha
+mangled 'invert', '!"&\'(.3467;<?[_{‿⁅∴',  '∵⁆⁀}‾]¿>؛Ɫ9ᔭƐ˙),⅋„¡', 'non alpha';
+mangled 'invert', '∵⁆⁀}‾]¿>؛Ɫ9ᔭƐ˙),⅋„¡', '!"&\'(.3467;<?[_{‿⁅∴',  'non alpha roundtrip';
