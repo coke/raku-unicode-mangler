@@ -40,4 +40,4 @@ Where possible, preserve input combining marks:
 ## Related Modules
 
 For a more focused approach on the Mathematical Alphanumeric Symbols unicode block, try:
-https://modules.raku.org/dist/Text::MathematicalCase:cpan:ELIZABETH/lib/Text/MathematicalCase.pm6
+https://modules.raku.org/dist/Text::MathematicalCase:cpan:ELIZABETH/
