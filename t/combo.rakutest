@@ -1,0 +1,17 @@
+#!/usr/bin/env perl6
+
+use lib $*PROGRAM.parent(1);
+use runner;
+
+use Test;
+plan 1;
+
+my $in = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+my $out = mangled-run 'combo', $in;
+
+subtest {
+   for $out.comb Z, $in.comb -> ($combo, $plain) {
+       is $combo.NFD[0].chr, $plain, "$plain vs $combo";
+   }
+}
+

@@ -60,12 +60,15 @@ sub one-char($hack, $char) {
     $new-char;
 }
 
+BEGIN our $num-combiners = 2;
+
 sub try-some(Str $char, Int $count) {
-    state @combinors = (0x0300..0x036F,0x1AB0..0x1AFF,0x1DC0..0x1DFF,0x20D0..0x20FF,0xFE20..0xFE2F).flat.grep({
+    state @combinors = (0x0300..0x036F,0x1DC0..0x1DFF).flat.grep({
         uniprop($_, 'Canonical_Combining_Class') ne "0"
     }).map({.chr});
     $char ~ @combinors.pick($count).join;
 }
+
 
 BEGIN %hacks = (
     'random' => -> $char {
@@ -93,9 +96,9 @@ BEGIN %hacks = (
         $try //= try ('MATHEMATICAL ' ~ $name).uniparse;
     },
     'combo' => -> $char {
-        my $suggest = try-some($char, 10);
-        while $suggest.uninames.grep(/'<reserved>'/) {
-            $suggest = try-some($char, 10);
+        my $suggest = try-some($char, $num-combiners);
+        while $suggest.uninames.grep({.contains('<reserved'|'REPLACEMENT')}) {
+            $suggest = try-some($char, $num-combiners);
         }
         $suggest;
     },

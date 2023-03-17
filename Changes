@@ -2,6 +2,7 @@ Revision history for App-Unicode-Mangle
 
 {{$NEXT}}
     - Fix file extension, lib handling in t/
+    - test --combo, simplify combo
 
 1.0.3  2023-03-17T18:28:52-04:00
     - Switch to zef 
