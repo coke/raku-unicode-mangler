@@ -72,25 +72,25 @@ BEGIN %hacks = (
         one-char(%hacks.keys.grep({$_ ne "random"}).pick(1), $char);
     },
     'circle' => -> $char {
-        try ('CIRCLED ' ~ $char.uniname).parse-names;
+        try ('CIRCLED ' ~ $char.uniname).uniparse;
     },
     'paren' => -> $char {
-        try ('PARENTHESIZED ' ~ $char.uniname).parse-names;
+        try ('PARENTHESIZED ' ~ $char.uniname).uniparse;
     },
     'bold' => -> $char {
         my $name = $char.uniname;
         $name ~~ s/ 'LATIN ' //;
         $name ~~ s/ 'LETTER ' //;
         $name = "MATHEMATICAL BOLD $name";
-        try $name.parse-names;
+        try $name.uniparse;
     },
     'outline' => -> $char {
         my $name = $char.uniname;
         $name ~~ s/ 'LATIN ' //;
         $name ~~ s/ 'LETTER ' //;
         $name = "DOUBLE-STRUCK $name";
-        my $try = try $name.parse-names;
-        $try //= try ('MATHEMATICAL ' ~ $name).parse-names;
+        my $try = try $name.uniparse;
+        $try //= try ('MATHEMATICAL ' ~ $name).uniparse;
     },
     'combo' => -> $char {
         my $suggest = try-some($char, 10);
@@ -103,7 +103,7 @@ BEGIN %hacks = (
         my $name = $char.uniname;
         $name = 'SQUARED ' ~ $name;
         $name ~~ s/SMALL/CAPITAL/;
-        try $name.parse-names;
+        try $name.uniparse;
     },
     'nsquare' => -> $char {
         my $name = $char.uniname;
@@ -112,14 +112,14 @@ BEGIN %hacks = (
         if $name eq 'NEGATIVE SQUARED LATIN CAPITAL LETTER X' {
             $name = 'NEGATIVE SQUARED CROSS MARK';
         }
-        try $name.parse-names;
+        try $name.uniparse;
     },
     'italic' => -> $char {
         my $name = $char.uniname;
         $name = 'MATHEMATICAL SANS-SERIF ITALIC ' ~ $name;
         $name ~~ s/ 'LATIN ' //;
         $name ~~ s/ 'LETTER ' //;
-        try $name.parse-names;
+        try $name.uniparse;
     },
     # Original table courtesy
     # http://www.fileformat.info/convert/text/upside-down-map.htm
