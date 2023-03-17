@@ -1,7 +1,8 @@
 {
   "authors" : [
-    "Will \"Coke\" Coleda"
+    "Will Coleda"
   ],
+  "auth": "zef:coke",
   "build-depends" : [ ],
   "depends" : [ ],
   "description" : "",
