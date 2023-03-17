@@ -1,6 +1,8 @@
 Revision history for App-Unicode-Mangle
 
 {{$NEXT}}
+
+1.0.3  2023-03-17T18:28:52-04:00
     - Switch to zef 
     - Deprecated code warning (#4)
 
