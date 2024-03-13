@@ -1,6 +1,8 @@
 Revision history for App-Unicode-Mangle
 
 {{$NEXT}}
+
+1.0.4  2024-03-13T18:52:01-04:00
     - Fix file extension, lib handling in t/
     - test --combo, simplify combo
 
