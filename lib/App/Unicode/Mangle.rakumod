@@ -128,7 +128,6 @@ BEGIN %hacks = (
     # http://www.fileformat.info/convert/text/upside-down-map.htm
 
     'invert' => -> $char {
-        my $result;
         my %mappings = %(
             "!", "¡", '"', "„", "&", "⅋", "'", ",", "(", ")",
             ".", "˙", "3", "Ɛ", "4", "ᔭ", "6", "9", "7", "Ɫ",
@@ -143,15 +142,7 @@ BEGIN %hacks = (
             "v", "ʌ", "w", "ʍ", "y", "ʎ", '{', '}', "‿", "⁀",
             "⁅", "⁆", "∴", "∵"
         );
-        if %mappings{$char}:exists {
-            $result = %mappings{$char};
-        } else {
-            my %inverted = %mappings.invert;
-            if %inverted{$char}:exists {
-                $result = %inverted{$char};
-            }
-        }
-        $result;
+        %mappings{$char} // %mappings.antipairs.Hash{$char};
     }
 );
 
