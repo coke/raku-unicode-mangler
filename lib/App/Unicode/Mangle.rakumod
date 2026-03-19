@@ -60,13 +60,16 @@ sub one-char($hack, $char) {
     $new-char;
 }
 
-BEGIN our $num-combiners = 2;
+# Add an above and below combiner to a character.
+sub try-some(Str $char) {
+    state @skip-list = %?RESOURCES<skiplist-codes>.slurp.lines.map(*.chr.ord);
+    my $attr = 'Canonical_Combining_Class';
+    state @all = (0x0000..0xFFFF).grep(*.uniprop($attr) != "0").grep(* ∉ @skip-list);
+    state @above = @all.grep(*.uniprop($attr) == 8|212|214|216|228|230|232|234).map(*.chr);
+    state @below = @all.grep(*.uniprop($attr) == 200|202|204|218|220|222|233|240).map(*.chr);
 
-sub try-some(Str $char, Int $count) {
-    state @combinors = (0x0300..0x036F,0x1DC0..0x1DFF).flat.grep({
-        uniprop($_, 'Canonical_Combining_Class') ne "0"
-    }).map({.chr});
-    $char ~ @combinors.pick($count).join;
+    my @combinors = @above.pick(1), @below.pick(1);
+    $char ~ @combinors.join;
 }
 
 
@@ -96,11 +99,7 @@ BEGIN %hacks = (
         $try //= try ('MATHEMATICAL ' ~ $name).uniparse;
     },
     'combo' => -> $char {
-        my $suggest = try-some($char, $num-combiners);
-        while $suggest.uninames.grep({.contains('<reserved'|'REPLACEMENT')}) {
-            $suggest = try-some($char, $num-combiners);
-        }
-        $suggest;
+        try-some($char);
     },
     'square' => -> $char {
         my $name = $char.uniname;

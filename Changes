@@ -1,6 +1,10 @@
 Revision history for App-Unicode-Mangle
 
 {{$NEXT}}
+    - --combo 
+        - Add utility to test combiners for --combo
+        - Add skiplist for bad combiners for --combo
+        - Pick 1 above/1 below combiner *only* for --combo
     - Simplify invert logic - David Schultz
 
 1.0.4  2024-03-13T18:52:01-04:00

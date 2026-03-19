@@ -15,6 +15,7 @@
     "App::Unicode::Mangle": "lib/App/Unicode/Mangle.rakumod"
   },
   "resources": [
+       "skiplist-codes"
   ],
   "source-url": "https://github.com/coke/raku-unicode-mangler.git",
   "tags": [
