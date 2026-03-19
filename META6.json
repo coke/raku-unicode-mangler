@@ -15,12 +15,12 @@
     "App::Unicode::Mangle": "lib/App/Unicode/Mangle.rakumod"
   },
   "resources": [
-       "skiplist-codes"
+    "skiplist-codes"
   ],
   "source-url": "https://github.com/coke/raku-unicode-mangler.git",
   "tags": [
   ],
   "test-depends": [
   ],
-  "version": "1.0.4"
+  "version": "1.0.5"
 }
