@@ -1,4 +1,14 @@
-# Test various combos
+=begin comment
+
+For any of the B<SOLO> items that have display issues, add those to the skiplist.
+These can be done in bulk.
+
+For any of the B<COMBO> items, skip them if a significant percentage of the combinations
+fail. Remove one a time this way because this may improve the percentage for other combiners.
+
+=end comment
+
+
 sub MAIN() {
 
     # Cheat
@@ -51,15 +61,16 @@ sub MAIN() {
         }
     }
 
+
+    # solo combiners from all types
     for %types.keys.sort(*.fc) -> $name {
         next unless %types{$name}.elems;
         my $count = 0;
-        say "\n*** $name";
+        say "\n*** SOLO: $name";
         for @(%types{$name}).sort -> $combiner {
             next if @skips.grep($combiner.ord);
             say '' if $count >0 && $count %% 10;
-            my $ord = $combiner.ord.base(16);
-            print '0x' ~ ($ord.chars == 3 ?? '0' !! '') ~ $ord;
+            print display-ord($combiner);
             print ' ';
             print $test-latin ~ $combiner;
             print ' ';
@@ -67,4 +78,43 @@ sub MAIN() {
         }
         say '';
     }
+
+    # BELOW/ABOVE
+    for @(%types<below>).sort -> $below {
+        next if @skips.grep($below.ord);
+        my $count = 0;;
+        say "\n*** COMBO: below {display-ord($below)}";
+        for @(%types<above>).sort -> $above {
+            next if @skips.grep($above.ord);
+            say '' if $count >0 && $count %% 10;
+            print display-ord($above);
+            print ' ';
+            print $test-latin ~ $above ~ $below;
+            print ' ';
+            $count++;
+        }
+        say '';
+    }
+
+    # ABOVE/BELOW
+    for @(%types<above>).sort -> $above {
+        next if @skips.grep($above.ord);
+        my $count = 0;
+        say "\n*** COMBO: above {display-ord($above)}";
+        for @(%types<below>).sort -> $below {
+            next if @skips.grep($below.ord);
+            say '' if $count >0 && $count %% 10;
+            print display-ord($below);
+            print ' ';
+            print $test-latin ~ $above ~ $below;
+            print ' ';
+            $count++;
+        }
+        say '';
+    }
+}
+
+sub display-ord($combiner) {
+    my $ord = $combiner.ord.base(16);
+    '0x' ~ ($ord.chars == 3 ?? '0' !! '') ~ $ord;
 }
