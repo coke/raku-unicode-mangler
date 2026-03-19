@@ -7,9 +7,6 @@ sub MAIN() {
     my $test-latin = ('a'..'z').pick(1);
 
     my %combining-class-values =
-        'overlay', %(
-            'overlay', 1,
-        ),
         'above', %(
             'kana-voicing', 8,
             'attached-above-left', 212,
@@ -30,16 +27,15 @@ sub MAIN() {
             'double-below', 233,
             'iota-subscript', 240,
         ),
-        'right', %(
-            'attached-right', 210,
-            'right', 226,
-        ),
         'unused', %(
-            'han-reading', 6,     # no characters
-            'nukta', 7,           # mixed above/below
-            'virama', 9,          # mixed above/below
-            'attached-left', 208, # no characters
-            'left', 224,          # ugly
+            'overlay', 1,          # renders fine by itself but obscures the original letter
+            'han-reading', 6,      # no characters
+            'nukta', 7,            # mixed above/below
+            'virama', 9,           # mixed above/below
+            'attached-left', 208,  # no characters
+            'left', 224,           # ugly
+            'attached-right', 210, # no characters
+            'right', 226,          # no characters
         ),
     ;
 
