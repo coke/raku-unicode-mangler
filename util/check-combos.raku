@@ -19,12 +19,8 @@ sub MAIN() {
     my %combining-class-values =
         'above', %(
             'kana-voicing', 8,
-            'attached-above-left', 212,
             'attached-above', 214,
-            'attached-above-right', 216,
-            'above-left', 228,
             'above', 230,
-            'above-right', 232,
             'double-above', 234,
         ),
         'below', %(
@@ -38,14 +34,18 @@ sub MAIN() {
             'iota-subscript', 240,
         ),
         'unused', %(
-            'overlay', 1,          # renders fine by itself but obscures the original letter
-            'han-reading', 6,      # no characters
-            'nukta', 7,            # mixed above/below
-            'virama', 9,           # mixed above/below
-            'attached-left', 208,  # no characters
-            'left', 224,           # ugly
-            'attached-right', 210, # no characters
-            'right', 226,          # no characters
+            'overlay', 1,                # renders fine by itself but obscures the original letter
+            'han-reading', 6,            # no characters
+            'nukta', 7,                  # mixed above/below
+            'virama', 9,                 # mixed above/below
+            'attached-left', 208,        # no characters
+            'left', 224,                 # ugly
+            'attached-right', 210,       # no characters
+            'right', 226,                # no characters
+            'attached-above-left', 212,  # too much with multiple characters
+            'attached-above-right', 216, # too much with multiple characters
+            'above-left', 228,           # too much with multiple characters
+            'above-right', 232,          # too much with multiple characters
         ),
     ;
 

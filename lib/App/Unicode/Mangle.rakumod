@@ -65,7 +65,7 @@ sub try-some(Str $char) {
     state @skip-list = %?RESOURCES<skiplist-codes>.slurp.lines.map(*.chr.ord);
     my $attr = 'Canonical_Combining_Class';
     state @all = (0x0000..0xFFFF).grep(*.uniprop($attr) != "0").grep(* ∉ @skip-list);
-    state @above = @all.grep(*.uniprop($attr) == 8|212|214|216|228|230|232|234).map(*.chr);
+    state @above = @all.grep(*.uniprop($attr) == 8|214|230|234).map(*.chr);
     state @below = @all.grep(*.uniprop($attr) == 200|202|204|218|220|222|233|240).map(*.chr);
 
     my @combinors = @above.pick(1), @below.pick(1);
