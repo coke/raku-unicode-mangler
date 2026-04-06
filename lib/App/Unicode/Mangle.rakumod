@@ -1,4 +1,4 @@
-unit class App::Unicode::Mangle:ver<1.0.6>;
+unit class App::Unicode::Mangle:ver<1.0.7>;
 
 my (%hacks, %posts);
 
