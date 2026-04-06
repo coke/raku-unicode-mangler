@@ -27,6 +27,9 @@ Some samples:
     $ uni-mangler --nsquare 'A little boxy'
     🅰   🅻 🅸 🆃 🆃 🅻 🅴   🅱 🅾 ❎ 🆈
 
+    $ uni-mangler --strike 'No longer true'
+    n̶o̶ ̶l̶o̶n̶g̶e̶r̶ ̶t̶r̶u̶e̶
+
     $ uni-mangler --random 'Happy Birthday!'
     Ⓗ⒜ⓟ𝐩𝐲 𐐒⒤𝐫⒯⒣pɐ⒴¡
 

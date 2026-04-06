@@ -90,6 +90,9 @@ BEGIN %hacks = (
         $name = "MATHEMATICAL BOLD $name";
         try $name.uniparse;
     },
+    'strike' => -> $char {
+        $char ~ "\c[COMBINING LONG STROKE OVERLAY]"
+    },
     'outline' => -> $char {
         my $name = $char.uniname;
         $name ~~ s/ 'LATIN ' //;
